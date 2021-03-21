@@ -12,7 +12,7 @@ private DataInputStream putinfo;
 private DataOutputStream outinfo;
 
     public ClientHandler(Server server, Socket socket) {
-
+        int a = 2;
         String inf = "Info : ";
         try {
             this.server = server;
