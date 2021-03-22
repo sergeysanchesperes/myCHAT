@@ -20,9 +20,8 @@ private DataOutputStream outinfo;
             putinfo = new DataInputStream(socket.getInputStream());
             outinfo = new DataOutputStream(socket.getOutputStream());
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+            new Thread(()-> {
+
                     try {
                     while (true) {
 
@@ -41,14 +40,13 @@ private DataOutputStream outinfo;
                             e.printStackTrace();
                         }finally {
                         System.out.println(inf + "Клиент отключился от сервера.");
+                        server.unsubscribe(this);
                         try {
                             socket.close();
                         } catch (IOException ioException) {
                             ioException.printStackTrace();
                         }
                     }
-                    }
-
 
             }).start();
         } catch (IOException e) {
